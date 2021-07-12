@@ -1,4 +1,8 @@
-# dgx-funcx-minimal-example
+# Minimal (failing) example of funcX on HAL DGX
+
+## Machine
+
+All
 
 ## Minimal Example
 
