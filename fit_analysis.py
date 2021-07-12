@@ -135,7 +135,7 @@ def main(args):
     print(tasks.values())
 
     with open("output.json", "w") as out_file:
-        json.dump(tasks.values(), out_file, indent=2)
+        json.dump(tasks, out_file, indent=2)
         out_file.write("\n")
 
 
