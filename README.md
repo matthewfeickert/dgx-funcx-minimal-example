@@ -6,6 +6,8 @@ These (CPU scaling) examples are all run on the [NCSA HAL DGX cluster](https://w
 The DGX does not have a batch system on it and so the users are responsible for load balancing and not overwhelming the system.
 How best to do this with `funcX` is not yet fully understood by Matthew.
 
+(GPU scaling examples will follow on another project after CPU scaling is understood.)
+
 ## Minimal Example
 
 1. On DGX get Python 3.8.11 with pyenv following instructions at https://github.com/Neubauer-Group/dgx-setup
