@@ -25,15 +25,14 @@ $ cp dgx-config.py ~/.funcx/pyhf/config.py
 5. Then startup the endpoint
 
 ```console
-$ funcx-endpoint start pyhf
+$ funcx-endpoint start pyhf && funcx-endpoint list
 YYYY-MM-DD HH:MM:SS endpoint.endpoint_manager:173 [INFO]  Starting endpoint with uuid: 12345678-abcd-abcd-abcd-123456789101
 YYYY-MM-DD HH:MM:SS endpoint.endpoint_manager:238 [INFO]  Launching endpoint daemon process
-$ funcx-endpoint list
-+---------------+--------+--------------------------------------+
-| Endpoint Name | Status |             Endpoint ID              |
-+===============+========+======================================+
-| pyhf          | Active | 12345678-abcd-abcd-abcd-123456789101 |
-+---------------+--------+--------------------------------------+
++---------------+---------+--------------------------------------+
+| Endpoint Name | Status  |             Endpoint ID              |
++===============+=========+======================================+
+| pyhf          | Running | 12345678-abcd-abcd-abcd-123456789101 |
++---------------+---------+--------------------------------------+
 ```
 
 6. Copy the Endpoint ID file to wherever you're going to submit from
@@ -61,19 +60,17 @@ $ time python fit_analysis.py -c config/1Lbb.json -b numpy
 
 ## Observed behavior
 
-Things will all start without any problems, but nothing ever gets run
-
-## Note on troubleshooting `funcx-endpoint stop pyhf`
-
-At the end of this running
+Things now run but after execution the `funcx-endpoint` ends up in a `Disconnected` state
 
 ```console
-$ funcx-endpoint stop pyhf
+(pyhf-funcx) [feickert@hal-dgx dgx-funcx-minimal-example]$ funcx-endpoint list
++---------------+--------------+--------------------------------------+
+| Endpoint Name |    Status    |             Endpoint ID              |
++===============+==============+======================================+
+| pyhf          | Disconnected | 12345678-abcd-abcd-abcd-123456789101 |
++---------------+--------------+--------------------------------------+
 ```
 
-will result in the error seen in `stop-error.log.txt`. As this needs to get debugged, the only way I've found so far to shut things down is to run the following
+which according to the [`funcx` `v0.3.0`](https://funcx.readthedocs.io/en/latest/endpoints.html) docs is bad:
 
-```console
-$ rm -rf ~/.funcx
-$ killall funcx-endpoint  # Run repeatedly until returns 'no process found'
-```
+> **Disconnected:** The endpoint disconnected unexpectedly. It is not running and therefore, cannot service any functions. Starting this endpoint will first invoke necessary endpoint cleanup, since it was not stopped correctly previously.
