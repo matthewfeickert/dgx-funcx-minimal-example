@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Supress prompt changing warning
-export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-
 pyenv deactivate
 pyenv virtualenv 3.8.11 pyhf-funcx
 pyenv activate pyhf-funcx
