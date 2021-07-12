@@ -62,3 +62,18 @@ $ time python fit_analysis.py -c config/1Lbb.json -b numpy
 ## Observed behavior
 
 Things will all start without any problems, but nothing ever gets run
+
+## Note on troubleshooting `funcx-endpoint stop pyhf`
+
+At the end of this running
+
+```console
+$ funcx-endpoint stop pyhf
+```
+
+will result in the error seen in `stop-error.log.txt`. As this needs to get debugged, the only way I've found so far to shut things down is to run the following
+
+```console
+$ rm -rf ~/.funcx
+$ killall funcx-endpoint  # Run repeatedly until returns 'no process found'
+```
