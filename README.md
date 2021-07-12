@@ -2,7 +2,9 @@
 
 ## Machine
 
-All
+These (CPU scaling) examples are all run on the [NCSA HAL DGX cluster](https://wiki.ncsa.illinois.edu/display/ISL20/NVIDIA+DGX+A100) which has [128 cores](https://images.nvidia.com/aem-dam/Solutions/Data-Center/nvidia-dgx-a100-datasheet.pdf) and so is desirable to test scaling performance across.
+The DGX does not have a batch system on it and so the users are responsible for load balancing and not overwhelming the system.
+How best to do this with `funcX` is not yet fully understood by Matthew.
 
 ## Minimal Example
 
