@@ -43,3 +43,22 @@ $ funcx-endpoint list | grep pyhf | awk '{print $(NF-1)}' > endpoint_id.txt
 # $ scp DGX:~/PATH-TO-WHERE-THIS-REPO-CLONED/endpoint_id.txt .
 # $ echo "endpoint_id.txt" >> .gitignore
 ```
+
+7. From the submission machine, make sure that you have the same Python virtual environment setup. So enter into a Python virtual environment and then
+
+```console
+$ python -m pip install -r core-requirements.txt
+```
+
+8. Then once you're sure that on DGX the `funcx-endpoint` is running and from the submission machine `endpoint_id.txt` is correct run the test job of 5 signal patches
+
+```console
+$ time python fit_analysis.py -c config/1Lbb.json -b numpy
+```
+
+9. On DGX you'll probably want to try to monitor how things are going with `htop -u $USER`.
+
+
+## Observed behavior
+
+Things will all start without any problems, but nothing ever gets run
