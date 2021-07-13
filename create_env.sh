@@ -8,4 +8,5 @@ pyenv version
 
 python -m pip install --upgrade pip setuptools wheel
 python -m pip install -r core-requirements.txt
+python -m pip install --no-binary :all: --force-reinstall pyzmq
 python -m pip list
