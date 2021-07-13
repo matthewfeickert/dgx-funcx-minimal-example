@@ -15,7 +15,7 @@ config = Config(
         HighThroughputExecutor(
             label="DGX",
             max_workers_per_node=20,
-            ddress=address_by_hostname(),
+            address=address_by_hostname(),
             provider=LocalProvider(
                 init_blocks=1,
                 min_blocks=1,
