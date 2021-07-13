@@ -1,3 +1,4 @@
+from parsl.addresses import address_by_hostname
 from funcx_endpoint.endpoint.utils.config import Config
 from funcx_endpoint.executors import HighThroughputExecutor
 from parsl.providers import LocalProvider
@@ -13,8 +14,9 @@ config = Config(
     executors=[
         HighThroughputExecutor(
             label="DGX",
+            max_workers_per_node=20,
+            ddress=address_by_hostname(),
             provider=LocalProvider(
-                max_workers_per_node=20,
                 init_blocks=1,
                 min_blocks=1,
                 max_blocks=1,
