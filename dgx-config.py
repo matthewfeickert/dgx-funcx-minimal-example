@@ -14,14 +14,14 @@ config = Config(
         HighThroughputExecutor(
             label="DGX",
             provider=LocalProvider(
+                max_workers_per_node=20,
                 init_blocks=1,
-                min_blocks=0,
-                max_blocks=2,
+                min_blocks=1,
+                max_blocks=1,
                 nodes_per_block=1,  # default value
                 parallelism=1,  # default value
                 worker_init=user_opts["dgx"]["worker_init"],
-                launcher=SimpleLauncher(),
-                walltime="00:10:00",
+                # launcher=SimpleLauncher(),
             ),
         )
     ],
