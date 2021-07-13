@@ -27,7 +27,7 @@ config = Config(
             ),
         )
     ],
-    funcx_service_address="https://api2.funcx.org/v2",
+    funcx_service_address="https://api.dev.funcx.org/v2"
 )
 
 # For now, visible_to must be a list of URNs for globus auth users or groups, e.g.:
