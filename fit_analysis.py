@@ -70,7 +70,7 @@ def main(args):
         bkgonly_workspace = json.load(bkgonly_json)
 
     # Initialize funcX client
-    fxc = FuncXClient()
+    fxc = FuncXClient(funcx_service_address="https://api.dev.funcx.org/v2")
     fxc.max_requests = 200
 
     with open("endpoint_id.txt") as endpoint_file:
@@ -103,8 +103,9 @@ def main(args):
     print(workspace)
 
     # execute patch fits across workers and retrieve them when done
-    # n_patches = len(patchset.patches)
-    n_patches = 5  # NOTE: This is a small test size
+    n_patches = len(patchset.patches)
+    # n_patches = 25  # NOTE: This is a small test size
+    # n_patches = 5  # NOTE: This is a small test size
     tasks = {}
     for patch_idx in range(n_patches):
         patch = patchset.patches[patch_idx]
@@ -127,12 +128,12 @@ def main(args):
                         f"Task {task} complete, there are {count_complete(tasks.values())+1} results now"
                     )
                     tasks[task]["result"] = result
-                except Exception as excep:
+                except TaskPending as excep:
                     print(f"inference: {excep}")
                     sleep(15)
 
     print("--------------------")
-    print(tasks.values())
+    # print(tasks.values())
 
     with open("output.json", "w") as out_file:
         json.dump(tasks, out_file, indent=2)
