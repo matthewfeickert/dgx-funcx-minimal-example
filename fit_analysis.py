@@ -6,6 +6,7 @@ from time import sleep
 import pyhf
 from funcx.sdk.client import FuncXClient
 from pyhf.contrib.utils import download
+from funcx.utils.errors import TaskPending
 
 
 def prepare_workspace(data, backend):
